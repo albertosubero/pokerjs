@@ -41,7 +41,7 @@ let deck = [
 ]
 
 let usedCards = []
-let players = [
+let tablePlayers = [
   {
     name: "BetoBurger",
     chips: 1000,
@@ -49,6 +49,16 @@ let players = [
   },
   {
     name: "TabisCakes",
+    chips: 1000,
+    cards: []
+  },
+  {
+    name: "NachoPistacho",
+    chips: 1000,
+    cards: []
+  },
+  {
+    name: "Chino",
     chips: 1000,
     cards: []
   }
@@ -78,8 +88,16 @@ function shuffle(array) {
   return array;
 }
 
+console.log("🚀 ~ deck:", shuffle(deck))
 
 // Deals Cards
+function dealCards(players) {
+  for (let i = 0; i < players.length; i++) {
+    const firstCard = i === 0 ? i : i + i
+    const secondCard = firstCard + 1
+    players[i].cards.push(deck[firstCard], deck[secondCard])
+  }
+}
 
-
-console.log("🚀 ~ deck:", shuffle(deck))
+dealCards(tablePlayers)
+console.log("🚀 ~ players:", tablePlayers)
