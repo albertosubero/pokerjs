@@ -1,63 +1,67 @@
 let deck = [
   { card: "A", 
-    suit: 1
+    suit: "spades"
   },
   { card: "K", 
-    suit: 1
+    suit: "spades"
   },
   { card: "Q", 
-    suit: 1
+    suit: "spades"
   },
   { card: "J", 
-    suit: 1
+    suit: "spades"
   },
   { card: "10", 
-    suit: 1
+    suit: "spades"
   },
   { card: "9", 
-    suit: 1
+    suit: "spades"
   },
   { card: "8", 
-    suit: 1
+    suit: "spades"
   },
   { card: "7", 
-    suit: 1
+    suit: "spades"
   },
   { card: "6", 
-    suit: 1
+    suit: "spades"
   },
   { card: "5", 
-    suit: 1
+    suit: "spades"
   },
   { card: "4", 
-    suit: 1
+    suit: "spades"
   },
   { card: "3", 
-    suit: 1
+    suit: "spades"
   },
   { card: "2", 
-    suit: 1
+    suit: "spades"
   }
 ]
 
 let usedCards = []
 let tablePlayers = [
   {
+    _id: "player_1",
     name: "BetoBurger",
     chips: 1000,
     cards: []
   },
   {
+    _id: "player_2",
     name: "TabisCakes",
     chips: 1000,
     cards: []
   },
   {
+    _id: "player_3",
     name: "NachoPistacho",
     chips: 1000,
     cards: []
   },
   {
+    _id: "player_4",
     name: "Chino",
     chips: 1000,
     cards: []
@@ -66,7 +70,7 @@ let tablePlayers = [
 
 // Push suits
 deck.forEach(card => {
-  deck.push({ card: card.card, suit: 2 }, { card: card.card, suit: 3 }, { card: card.card, suit: 4 })
+  deck.push({ card: card.card, suit: "hearts" }, { card: card.card, suit: "diamonds" }, { card: card.card, suit: "clubs" })
 })
 
 // Deck Suffle
@@ -96,7 +100,31 @@ function dealCards(players) {
     const firstCard = i === 0 ? i : i + i
     const secondCard = firstCard + 1
     players[i].cards.push(deck[firstCard], deck[secondCard])
+
+    // Render Cards
+    renderPlayerCards(players[i])
   }
+}
+
+// Render Cards
+function renderPlayerCards({ name, _id, cards } = player) {
+  let playerSit = document.getElementById(_id)
+  const playerName = document.createElement('div')
+
+  playerName.classList.add('player__name')
+  playerName.textContent = name;
+  playerSit.appendChild(playerName);
+
+  cards.forEach(card => {
+    // ✅ Create card
+    const playerCard = document.createElement('div');
+    // ✅ Add classes to card
+    playerCard.classList.add('card', card.suit);
+    // display card value
+    playerCard.textContent = card.card;
+    // Render card
+    playerSit.appendChild(playerCard);
+  })
 }
 
 dealCards(tablePlayers)
