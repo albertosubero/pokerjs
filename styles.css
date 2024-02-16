@@ -2,19 +2,56 @@ body {
   background-color: #06754b;
 }
 
-.card {
-    background-color: #ffffff;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    width: 120px;
-    height: 200px;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    margin: 0.5rem;
-    border-radius: 8px;
-    font-size: 3rem;
-    &.diamonds, &.hearts {
-      color: red;
+.players__container {
+  display: flex;
+  gap: 2rem;
+  .player {
+    .player__name {
+      background: #262525;
+      border-radius: 2rem;
+      color: #ffffff;
+      padding: 0.3rem 0.6rem;
+      max-width: 50%;
+      font-family: sans-serif;
+      font-size: .8rem;
+      letter-spacing: 2px;
     }
+    .card {
+      background-color: #ffffff;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      width: 120px;
+      height: 200px;
+      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      margin: 0.5rem;
+      border-radius: 8px;
+      font-size: 3rem;
+      color: #262525;
+      &.diamonds, &.hearts {
+        color: #ff4848;
+      }
+      &.spades {
+        &::after {
+          content: '♠';
+        }
+      }
+      &.hearts {
+        &::after {
+          content: '♥';
+        }
+      }
+      &.diamonds {
+        &::after {
+          content: '♦';
+        }
+      }
+      &.clubs {
+        &::after {
+          content: '♣';
+        }
+      }
+    }
+  }
 }
